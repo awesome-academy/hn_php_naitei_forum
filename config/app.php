@@ -13,6 +13,8 @@ return [
     |
     */
 
+    'admin_id' => 1,
+
     'name' => env('APP_NAME', 'Laravel'),
 
     /*
