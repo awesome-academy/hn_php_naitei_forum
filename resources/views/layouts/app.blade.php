@@ -42,13 +42,13 @@
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                    <a class="nav-link" href="{{ route('login') }}">{{ trans('auth.login') }}</a>
                                 </li>
                             @endif
 
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link" href="{{ route('register') }}">{{ trans('auth.register') }}</a>
                                 </li>
                             @endif
                         @else
@@ -61,7 +61,7 @@
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                        {{ trans('auth.logout') }}
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -70,6 +70,15 @@
                                 </div>
                             </li>
                         @endguest
+                    </ul>
+                    |
+                    <ul class="navbar-nav ml-2">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('language.index',['en']) }}">en</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('language.index',['vi']) }}">vi</a>
+                        </li>
                     </ul>
                 </div>
             </div>
