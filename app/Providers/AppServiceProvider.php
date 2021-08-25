@@ -29,6 +29,13 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        Gate::define('update-question', function ($user, $question) {
+            return $user->id === $question->user_id;
+        });
+
+        Gate::define('delete-question', function ($user, $question) {
+            return $user->id === $question->user_id;
+        });
         Gate::define('is-admin', function (User $user) {
             return $user->role_id == Config::get('app.admin_id');
         });

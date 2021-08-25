@@ -16,6 +16,7 @@
     "tests"
   ],
   "dependencies": {
-    "Font-Awesome": "^5.15.4"
+    "Font-Awesome": "^5.15.4",
+    "select2": "https://github.com/ivaynberg/select2.git#^4.0.13"
   }
 }

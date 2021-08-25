@@ -41,7 +41,8 @@
                                             <form class="form-delete" action="{{route('questions.destroy', $q->id)}}" method="POST">
                                                 @method('DELETE')
                                                 @csrf
-                                                <button type="submit" class="btn btn-sm btn-outline-danger submit_del">
+                                                <button type="submit" class="btn btn-sm btn-outline-danger submit_del"
+                                                data-confirm="{{ __('question.confirmSentence') }}">
                                                   {{ __('question.delete') }}
                                                 </button>
                                             </form>
