@@ -1,13 +1,35 @@
 const { data } = require("jquery");
 
 $(document).ready(function () {
-    $('.multi-tag').select2({
-        maximumSelectionLength: 2,
-        placeholder: $(this).data('placeholder'),
-        allowClear: true,
-    });
+
+    function checkIfDuplicateExists(w){
+        return new Set(w).size !== w.length
+    }
+
     $('.submit_del').on('click', function () {
         var confirmSentence = $(this).data('confirm');
         return confirm(confirmSentence);
     });
+
+    var dataInput = $('#tags_name').data('taglist');
+    $('#tags_name').tokenfield({
+        autocomplete: {
+            source: dataInput,
+            delay: 100
+        },
+        showAutocompleteOnFocus: true,
+        limit : 5,
+    });
+    $('#tags_name').on('change', function () {
+        var selectedList = ($('#tags_name').val().split(", "));
+        console.log(selectedList);
+        console.log(checkIfDuplicateExists(selectedList));
+        if (checkIfDuplicateExists(selectedList)) {
+            $('#duplicate-tags').css("display","block");
+            $('#submit-form-add').attr("disabled", true);
+        } else {
+            $('#duplicate-tags').css("display","none");
+            $('#submit-form-add').attr("disabled", false);
+        }
+    })
 });

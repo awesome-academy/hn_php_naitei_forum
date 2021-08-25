@@ -15,7 +15,7 @@ return [
     'submit-add' => "Thêm mới",
     'button-save' => "Lưu",
     'form-title' => "Tiêu đề câu hỏi",
-    'option-tag' => "Chọn các tag sau",
+    'option-tag' => "Mời bạn nhập tag cho câu hỏi",
     'add-success' => "Thêm mới câu hỏi thành công",
     'confirmSentence' => "Bạn có chắn chắn xoá câu hỏi này không ?",
     'title-require' => "Bạn phải nhập tiêu đề",
@@ -26,4 +26,6 @@ return [
     'edit-title' => "Chỉnh sửa câu hỏi",
     'button-update' => "Chỉnh sửa",
     'delete-success' => "Xoá thành công",
+    'duplicate-tag' => "Bạn vừa chọn trùng tags cho câu hỏi",
+    'tag-required' => "Bạn phải lựa chọn tag cho câu hỏi",
 ];

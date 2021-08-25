@@ -2,9 +2,10 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\QuestionRule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class QuestionRequest extends FormRequest
+class UpdateQuestionRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,8 +24,13 @@ class QuestionRequest extends FormRequest
      */
     public function rules()
     {
+        $titleChecked = new QuestionRule();
         return [
-            'title' => 'required|max:255|unique:questions',
+            'title' => [
+                'required',
+                'max:255',
+                $titleChecked
+            ],
             'content' => 'required',
             'tags' => 'required',
         ];

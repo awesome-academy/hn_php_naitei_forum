@@ -27,7 +27,6 @@ class HomeController extends Controller
         if (Gate::allows('is-admin')) {
             return view('admin.index');
         }
-
         return redirect()->route('questions.index');
     }
 }

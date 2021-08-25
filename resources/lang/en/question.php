@@ -26,4 +26,6 @@ return [
     'edit-title' => "Edit Question",
     'delete-success' => "Delete is successfully",
     'button-update' => "Update",
+    'duplicate-tag' => "You have selected duplicate tags",
+    'tag-required' => "You have to selected tag for question",
 ];
