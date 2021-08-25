@@ -3,10 +3,11 @@
   "description": "",
   "main": "",
   "authors": [
-    "thanhdat <thanhdatwg@gmail.com>"
+    "trung-lha <trung.lha100899@gmail.com>"
   ],
   "license": "MIT",
-  "homepage": "https://github.com/thanhdatwg/hn_php_naitei_forum",
+  "homepage": "https://github.com/trung-lha/hn_php_naitei_forum",
+  "private": true,
   "ignore": [
     "**/.*",
     "node_modules",
