@@ -26,9 +26,11 @@ Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('language/{locale}', [LanguageController::class, 'index'])->name('language.index');
-Route::resources([
-    'questions' => 'QuestionController',
-]);
+Route::resource('questions', 'QuestionController')->except('show');
+Route::resource('answers', 'AnswerController');
+Route::post('/answers/{answer}/accept', 'AcceptAnswerController')->name('answers.accept');
+Route::get('/questions/{slug}', 'QuestionController@show')->name('questions.show');
+
 Route::get('/admin', [AdminController::class, 'index'])->name('home');
 Route::get('/user-management', [AdminController::class, 'managerUser'])->name('user-management');
 Route::get('/question-management', [AdminController::class, 'managerQuestion'])->name('question-management');
