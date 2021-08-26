@@ -23,8 +23,9 @@ class CreateQuestionsTable extends Migration
             $table->unsignedInteger('answers')->default(0);
             $table->integer('up_vote')->default(0);
             $table->integer('down_vote')->default(0);
-            $table->unsignedInteger('best_answer_id')->nullable();
+            $table->unsignedInteger('best_answer_id')->nullable(true);
             $table->integer('user_id');
+            $table->integer('tag_id');
             $table->boolean('status')->default(true);
             $table->timestamps();
             
