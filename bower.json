@@ -1,0 +1,20 @@
+{
+  "name": "hn_php_naitei_forum",
+  "description": "",
+  "main": "",
+  "authors": [
+    "thanhdat <thanhdatwg@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/thanhdatwg/hn_php_naitei_forum",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "Font-Awesome": "^5.15.4"
+  }
+}
