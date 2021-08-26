@@ -22,6 +22,8 @@ return [
     'password' => 'Password',
     'email' => 'Email Address',
     'remember' => 'Remember me',
-    'forgotPassword' => 'Forgot Your Password?'
-
+    'forgotPassword' => 'Forgot Your Password?',
+    'homepage' => 'Home',
+    'manager_user' => 'Users Management',
+    'manager_QA' => 'Questions Management',
 ];

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 
-class HomeController extends Controller
+class AdminController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -28,6 +28,16 @@ class HomeController extends Controller
             return view('admin.index');
         }
 
-        return view('home');
+        return route('home');
+    }
+
+    public function managerUser()
+    {
+        return view('admin.user_manager');
+    }
+
+    public function managerQuestion()
+    {
+        return view('admin.question_manager');
     }
 }
