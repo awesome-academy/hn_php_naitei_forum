@@ -6,5 +6,8 @@ return [
     'password' => 'Mật khẩu',
     'email' => 'Địa chỉ Email',
     'remember' => 'Nhớ mật khẩu',
-    'forgotPassword' => 'Quên mật khẩu?'
+    'forgotPassword' => 'Quên mật khẩu?',
+    'homepage' => 'Trang chủ',
+    'manager_user' => 'Quản lý người dùng',
+    'manager_QA' => 'Quản lý câu hỏi',
 ];
