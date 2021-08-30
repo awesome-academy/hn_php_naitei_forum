@@ -28,4 +28,7 @@ return [
     'button-update' => "Update",
     'duplicate-tag' => "You have selected duplicate tags",
     'tag-required' => "You have to selected tag for question",
+    'active' => 'Active',
+    'inactive' => 'Inactive',
+
 ];

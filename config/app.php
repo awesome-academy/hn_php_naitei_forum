@@ -234,5 +234,7 @@ return [
     ],
 
     'paginate_number' => 10,
+    'question_active' => 1,
+    'question_inactive' => 0,
 
 ];
