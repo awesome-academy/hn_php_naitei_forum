@@ -31,7 +31,11 @@
                         <th>{{ $question->id }}</th>
                         <th>{{ $question->title }}</th>
                         <th>{{ $question->user->name }}</th>
-                        <th><button type="button" class="{{ $question->active ? 'btn-outline-success' : 'btn-outline-secondary' }} btn" disabled>{{ $question->active ? __('question.active') : __('question.inactive') }}</button></th>
+                        <th>
+                            <button type="button" class="{{ $question->active ? 'btn-outline-success' : 'btn-outline-secondary' }} btn" disabled>
+                                {{ $question->active ? __('question.active') : __('question.inactive') }}
+                            </button>
+                        </th>
                         <th class="d-flex justify-content-between align-items-center" style="border-top:0">
                             <span>
                                 <form class="form-delete" action="{{route('active-question', $question->id)}}" method="POST">
