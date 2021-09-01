@@ -10,16 +10,15 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-    {{-- <script src="{{ asset('bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script> --}}
+    <script src="{{ asset('js/app.js') }}" ></script>
+    <script src="{{ asset('bower_components/select2/dist/js/select2.min.js') }}"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    {{-- <link href="{{ asset('bower_components/bootstrap/dist/css/bootstrap.min.css') }}"> --}}
+    <link rel="stylesheet" href="{{ asset('bower_components/select2/dist/css/select2.min.css') }}">
 </head>
 <body>
     <div id="app">
@@ -90,5 +89,6 @@
             @yield('content')
         </main>
     </div>
+    <script src="{{ asset('js/questionHandle.js') }}"></script>
 </body>
 </html>

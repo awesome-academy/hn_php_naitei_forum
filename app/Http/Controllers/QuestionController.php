@@ -5,6 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Question;
 use Illuminate\Support\Facades\Config;
+use App\Http\Requests\QuestionRequest;
+use App\Models\Models\User;
+use App\Models\Tag;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 
 class QuestionController extends Controller
 {
@@ -27,7 +34,10 @@ class QuestionController extends Controller
      */
     public function create()
     {
-        //
+        $tags = Tag::all();
+        $question = new Question();
+
+        return view('questions.create', compact('tags', 'question'));
     }
 
     /**
@@ -36,9 +46,26 @@ class QuestionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(QuestionRequest $request)
     {
-        //
+        $dataQuestion = [
+            'title' => $request->title,
+            'content' => $request->content,
+            'user_id' => $request->user()->id,
+            'slug' => Str::slug($request->title, '-'),
+        ];
+
+        $newQuestion = Question::create($dataQuestion);
+        $tagQuestionArray = [];
+        foreach ($request->tags as $tag) {
+            array_push($tagQuestionArray, [
+                'tag_id' => $tag,
+                'question_id' => $newQuestion->id,
+            ]);
+        }
+        DB::table('tag_question')->insert($tagQuestionArray);
+
+        return redirect()->route('questions.index')->with('success', __('question.add-success'));
     }
 
     /**
@@ -58,9 +85,14 @@ class QuestionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Question $question)
     {
-        //
+        if (Gate::denies('update-question', $question)) {
+            abort(403, "Access denied");
+        }
+        $tags = Question::find($question->id)->tags()->get();
+
+        return view("questions.edit", compact('question', 'tags'));
     }
 
     /**
@@ -70,9 +102,16 @@ class QuestionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(QuestionRequest $request, Question $question)
     {
-        //
+        if (Gate::denies('update-question', $question)) {
+            abort(403, "Access denied");
+        }
+        $data = $request->validated();
+        $data['id'] = $question->id;
+        Question::where('id', $data["id"])->update($data);
+
+        return redirect('/questions')->with('success', __('question.update-success'));
     }
 
     /**
@@ -81,8 +120,13 @@ class QuestionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Question $question)
     {
-        //
+        if (Gate::denies('delete-question', $question)) {
+            abort(403, "Access denied");
+        }
+        $question->delete();
+
+        return redirect('/questions')->with('success', __('question.delete-success'));
     }
 }

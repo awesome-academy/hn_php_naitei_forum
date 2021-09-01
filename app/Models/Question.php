@@ -17,6 +17,7 @@ class Question extends Model
         'answers',
         'up_vote',
         'down_vote',
+        'user_id',
     ];
 
     public function answers()
