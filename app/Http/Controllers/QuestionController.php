@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Question;
 use Illuminate\Support\Facades\Config;
 use App\Http\Requests\QuestionRequest;
+use App\Http\Requests\UpdateQuestionRequest;
 use App\Models\Models\User;
 use App\Models\Tag;
 use Illuminate\Support\Facades\Auth;
@@ -34,10 +35,9 @@ class QuestionController extends Controller
      */
     public function create()
     {
-        $tags = Tag::all();
-        $question = new Question();
+        $tags = Tag::all()->pluck('title');
 
-        return view('questions.create', compact('tags', 'question'));
+        return view('questions.create', compact('tags'));
     }
 
     /**
@@ -48,16 +48,38 @@ class QuestionController extends Controller
      */
     public function store(QuestionRequest $request)
     {
+        $request->validated();
+        $listTags = explode(", ", $request->tags);
+        $listTagsId = [];
+        $tagsIdExist = DB::table('tags')->whereIn('title', $listTags)->get()->toArray();
+        $tagsIdExistConverted = [];
+        foreach ($tagsIdExist as $value) {
+            array_push($tagsIdExistConverted, [
+                'id' => $value->id,
+                'title' => $value->title,
+            ]);
+        }
+        foreach ($listTags as $key => $tag) {
+            foreach ($tagsIdExistConverted as $tagExist) {
+                if (strcmp($tag, $tagExist['title']) == 0) {
+                    array_push($listTagsId, $tagExist['id']);
+                    unset($listTags[$key]);
+                }
+            }
+        }
+        foreach ($listTags as $tag) {
+            $newTag = Tag::create(['title' => $tag]);
+            array_push($listTagsId, $newTag->id);
+        }
         $dataQuestion = [
             'title' => $request->title,
             'content' => $request->content,
             'user_id' => $request->user()->id,
             'slug' => Str::slug($request->title, '-'),
         ];
-
         $newQuestion = Question::create($dataQuestion);
         $tagQuestionArray = [];
-        foreach ($request->tags as $tag) {
+        foreach ($listTagsId as $tag) {
             array_push($tagQuestionArray, [
                 'tag_id' => $tag,
                 'question_id' => $newQuestion->id,
@@ -90,9 +112,11 @@ class QuestionController extends Controller
         if (Gate::denies('update-question', $question)) {
             abort(403, "Access denied");
         }
-        $tags = Question::find($question->id)->tags()->get();
+        $allTags = Tag::all()->pluck('title');
+        $tags = Question::find($question->id)->tags()->pluck('title');
+        $valueInput = implode(",", $tags->all());
 
-        return view("questions.edit", compact('question', 'tags'));
+        return view('questions.edit', compact('question', 'valueInput', 'allTags'));
     }
 
     /**
@@ -102,16 +126,54 @@ class QuestionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(QuestionRequest $request, Question $question)
+    public function update(UpdateQuestionRequest $request, Question $question)
     {
         if (Gate::denies('update-question', $question)) {
             abort(403, "Access denied");
         }
         $data = $request->validated();
+        $request->validated();
+        $listTags = explode(", ", $request->tags);
+        $listTagsId = [];
+        $tagsIdExist = DB::table('tags')->whereIn('title', $listTags)->get()->toArray();
+        $tagsIdExistConverted = [];
+        foreach ($tagsIdExist as $value) {
+            array_push($tagsIdExistConverted, [
+                'id' => $value->id,
+                'title' => $value->title,
+            ]);
+        }
+        foreach ($listTags as $key => $tag) {
+            foreach ($tagsIdExistConverted as $tagExist) {
+                if (strcmp($tag, $tagExist['title']) == 0) {
+                    array_push($listTagsId, $tagExist['id']);
+                    unset($listTags[$key]);
+                }
+            }
+        }
+        foreach ($listTags as $tag) {
+            $newTag = Tag::create(['title' => $tag]);
+            array_push($listTagsId, $newTag->id);
+        }
+        $dataQuestion = [
+            'title' => $request->title,
+            'content' => $request->content,
+            'user_id' => $request->user()->id,
+            'slug' => Str::slug($request->title, '-'),
+        ];
         $data['id'] = $question->id;
-        Question::where('id', $data["id"])->update($data);
+        Question::where('id', $data["id"])->update($dataQuestion);
+        $tagQuestionArray = [];
+        foreach ($listTagsId as $tag) {
+            array_push($tagQuestionArray, [
+                'tag_id' => $tag,
+                'question_id' => $data["id"],
+            ]);
+        }
+        DB::table('tag_question')->where('question_id', $data["id"])->delete();
+        DB::table('tag_question')->insert($tagQuestionArray);
 
-        return redirect('/questions')->with('success', __('question.update-success'));
+        return redirect()->route('questions.index')->with('success', __('question.update-success'));
     }
 
     /**
@@ -127,6 +189,6 @@ class QuestionController extends Controller
         }
         $question->delete();
 
-        return redirect('/questions')->with('success', __('question.delete-success'));
+        return redirect()->route('questions.index')->with('success', __('question.delete-success'));
     }
 }

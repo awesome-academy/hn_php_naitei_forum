@@ -9,7 +9,7 @@
                     <div class="d-flex align-items-center">
                         <h2>{{ __('question.title') }}</h2>
                         <div class="ml-auto">
-                            <a href="{{ route('questions.create' )}}" class="btn btn-outline-secondary">{{ __('question.add-question') }}</a>
+                            <a href="{{ route('questions.create')}}" class="btn btn-outline-secondary" id="create-button">{{ __('question.add-question') }}</a>
                         </div>
                     </div>
                 </div>
@@ -43,7 +43,7 @@
                                                 @csrf
                                                 <button type="submit" class="btn btn-sm btn-outline-danger submit_del"
                                                 data-confirm="{{ __('question.confirmSentence') }}">
-                                                  {{ __('question.delete') }}
+                                                    {{ __('question.delete') }}
                                                 </button>
                                             </form>
                                         @endcan

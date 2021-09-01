@@ -17,6 +17,9 @@
   ],
   "dependencies": {
     "Font-Awesome": "^5.15.4",
-    "select2": "https://github.com/ivaynberg/select2.git#^4.0.13"
+    "select2": "https://github.com/ivaynberg/select2.git#^4.0.13",
+    "tokenfield": "https://github.com/KaneCohen/tokenfield.git#^1.4.4",
+    "bootstrap-tokenfield": "https://github.com/sliptree/bootstrap-tokenfield.git#^0.12.1",
+    "jquery-ui": "https://github.com/components/jqueryui.git#^1.12.1"
   }
 }
