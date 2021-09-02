@@ -27,8 +27,9 @@ class CreateQuestionsTable extends Migration
             $table->integer('user_id');
             $table->integer('tag_id');
             $table->boolean('status')->default(true);
+            $table->boolean('active')->default(true);
             $table->timestamps();
-            
+
             // Add foreign key and delete cascade
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
