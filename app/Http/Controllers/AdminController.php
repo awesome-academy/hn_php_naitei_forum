@@ -41,11 +41,20 @@ class AdminController extends Controller
         return view('admin.user_manager', compact('users'));
     }
 
-    public function managerQuestion()
+    public function managerQuestion(Request $request)
     {
-        $questions = Question::with("user")->latest()->paginate(Config::get('app.paginate_number'));
+        if (isset($_GET['query']) && strlen($_GET['query']) > 1) {
+            $search_text = $request->input('query');
+            $questions = Question::with("user")
+                ->where('title', 'LIKE', '%' . $search_text . '%')
+                ->latest()->paginate(Config::get('app.paginate_number'));
 
-        return view('admin.question_manager', compact('questions'));
+            return view('admin.question_manager', compact('questions'));
+        } else {
+            $questions = Question::with("user")->latest()->paginate(Config::get('app.paginate_number'));
+
+            return view('admin.question_manager', compact('questions'));
+        }
     }
 
     /**
