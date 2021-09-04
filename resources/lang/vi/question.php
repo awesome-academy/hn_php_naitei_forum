@@ -6,7 +6,6 @@ return [
     'view' => "lượt xem",
     'answer' => "trả lời",
     'edit' => "Chỉnh sửa",
-    'delete' => "Xoá",
     'asked-by' => "từ",
     'back-to-all' => "Trở lại",
     'tag' => "Tag câu hỏi",
@@ -28,4 +27,7 @@ return [
     'delete-success' => "Xoá thành công",
     'duplicate-tag' => "Bạn vừa chọn trùng tags cho câu hỏi",
     'tag-required' => "Bạn phải lựa chọn tag cho câu hỏi",
+    'delete' => "Xoá",
+    'active' => 'Mở',
+    'inactive' => 'Chặn',
 ];

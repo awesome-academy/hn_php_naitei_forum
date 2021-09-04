@@ -23,7 +23,7 @@ class QuestionController extends Controller
      */
     public function index()
     {
-        $questions = Question::with("user")->latest()->paginate(Config::get('paginate_number'));
+        $questions = Question::with("user")->latest()->paginate(Config::get('app.paginate_number'));
 
         return view('questions.index', compact('questions'));
     }

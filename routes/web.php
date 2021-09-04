@@ -32,3 +32,9 @@ Route::resources([
 Route::get('/admin', [AdminController::class, 'index'])->name('home');
 Route::get('/user-management', [AdminController::class, 'managerUser'])->name('user-management');
 Route::get('/question-management', [AdminController::class, 'managerQuestion'])->name('question-management');
+Route::post('/delete-question/{id}', [AdminController::class, 'deleteQuestion'])->name('delete-question');
+Route::post('/active-question/{id}', [AdminController::class, 'activeQuestion'])->name('active-question');
+Route::post('/inactive-question/{id}', [AdminController::class, 'inactiveQuestion'])->name('inactive-question');
+Route::post('/delete-user/{id}', [AdminController::class, 'deleteUser'])->name('delete-user');
+Route::post('/active-user/{id}', [AdminController::class, 'activeUser'])->name('active-user');
+Route::post('/inactive-user/{id}', [AdminController::class, 'inactiveUser'])->name('inactive-user');
