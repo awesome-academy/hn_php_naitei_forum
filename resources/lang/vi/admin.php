@@ -14,10 +14,7 @@ return [
     'delete_question_success' => "Xoá câu hỏi thành công!",
     'active_question_success' => "Mở khoá câu hỏi thành công!",
     'inactive_question_success' => "Khoá câu hỏi thành công!",
-<<<<<<< HEAD
-=======
     'delete_user_success' => "Xoá tài khoản thành công!",
     'active_user_success' => "Mở khoá tài khoản thành công!",
     'inactive_user_success' => "Khoá tài khoản thành công!",
->>>>>>> e8b5f0b... Manager User Feature
 ];

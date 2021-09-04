@@ -237,10 +237,6 @@ return [
     'paginate_number' => 10,
     'question_active' => 1,
     'question_inactive' => 0,
-<<<<<<< HEAD
-
-=======
     'user_active' => 1,
     'user_inactive' => 0,
->>>>>>> e8b5f0b... Manager User Feature
 ];

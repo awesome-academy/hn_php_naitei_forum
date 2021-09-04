@@ -4,6 +4,17 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
+            <form class="d-flex" action="{{ route('questions.index' ) }}" method="GET">
+                <div class="form-group">
+                    <input type="text" class="form-control" name="query" placeholder="Enter question title ..." value="{{ request()->input('query') }}">
+                    <span class="text-danger">@error('query'){{ $message }} @enderror</span>
+                </div>
+                <div class="form-group ml-2">
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
                     <div class="d-flex align-items-center">

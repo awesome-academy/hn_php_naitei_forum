@@ -6,6 +6,7 @@ use App\Http\Controllers\LanguageController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\QuestionController;
+use App\Http\Controllers\SearchController;
 
 /*
 |--------------------------------------------------------------------------

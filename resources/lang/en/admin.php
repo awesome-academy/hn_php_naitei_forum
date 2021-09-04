@@ -14,10 +14,7 @@ return [
     'delete_question_success' => "Delete question successfully!",
     'active_question_success' => "Unlock question successfully!",
     'inactive_question_success' => "Lock question successfully!",
-<<<<<<< HEAD
-=======
     'delete_user_success' => "Delete user successfully!",
     'active_user_success' => "Unlock user successfully!",
     'inactive_user_success' => "Lock user successfully!",
->>>>>>> e8b5f0b... Manager User Feature
 ];
