@@ -36,7 +36,8 @@ class AdminController extends Controller
 
     public function managerUser()
     {
-        $users = User::with("role")->latest()->paginate(Config::get('app.paginate_number'));
+        $users = User::with("role")->where('role_id', Config::get('app.user_id'))
+            ->latest()->paginate(Config::get('app.paginate_number'));
 
         return view('admin.user_manager', compact('users'));
     }
@@ -85,6 +86,48 @@ class AdminController extends Controller
 
             return redirect(route('question-management'))
                 ->with('message', trans('admin.inactive_question_success'));
+        } else {
+            abort(403);
+        }
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  string  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function deleteUser($id)
+    {
+        User::find($id)->delete();
+
+        return redirect(route('user-management'))
+            ->with('message', trans('admin.delete_user_success'));
+    }
+
+    public function activeUser(Request $request)
+    {
+        if (isset($request->id)) {
+            User::where('id', $request->id)->update([
+                'status' => Config::get('app.user_active')
+            ]);
+
+            return redirect(route('user-management'))
+                ->with('message', trans('admin.active_user_success'));
+        } else {
+            abort(403);
+        }
+    }
+
+    public function inactiveUser(Request $request)
+    {
+        if (isset($request->id)) {
+            User::where('id', $request->id)->update([
+                'status' => Config::get('app.user_inactive')
+            ]);
+
+            return redirect(route('user-management'))
+                ->with('message', trans('admin.inactive_user_success'));
         } else {
             abort(403);
         }
