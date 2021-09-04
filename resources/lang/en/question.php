@@ -30,5 +30,6 @@ return [
     'tag-required' => "You have to selected tag for question",
     'active' => 'Active',
     'inactive' => 'Inactive',
-
+    'who' => " by ",
+    'answered' => "Answered ",
 ];

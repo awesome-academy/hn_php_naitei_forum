@@ -30,4 +30,6 @@ return [
     'delete' => "Xoá",
     'active' => 'Mở',
     'inactive' => 'Chặn',
+    'who' => " Bởi ",
+    'answered' => "Trả lời ",
 ];

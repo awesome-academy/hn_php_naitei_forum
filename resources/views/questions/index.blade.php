@@ -32,7 +32,7 @@
                             </div>
                             <div class="media-body">
                                 <div class="d-flex align-items-center">
-                                    <h3 class="mt-0"><a href="">{{ $q->title }}</a></h3>
+                                    <h3 class="mt-0"><a href="{{ route('questions.show', $q->id) }}">{{ $q->title }}</a></h3>
                                     <div class="ml-auto">
                                         @can('update-question', $q)
                                             <a href="{{route('questions.edit', $q->id)}}" class="btn btn-sm btn-outline-info">{{ __('question.edit') }}</a>
