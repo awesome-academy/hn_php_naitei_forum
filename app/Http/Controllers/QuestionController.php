@@ -21,11 +21,20 @@ class QuestionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $questions = Question::with("user")->latest()->paginate(Config::get('app.paginate_number'));
+        if (isset($_GET['query']) && strlen($_GET['query']) > 1) {
+            $search_text = $request->input('query');
+            $questions = Question::with("user")
+                ->where('title', 'LIKE', '%' . $search_text . '%')
+                ->latest()->paginate(Config::get('app.paginate_number'));
 
-        return view('questions.index', compact('questions'));
+            return view('questions.index', compact('questions'));
+        } else {
+            $questions = Question::with("user")->latest()->paginate(Config::get('app.paginate_number'));
+
+            return view('questions.index', compact('questions'));
+        }
     }
 
     /**
