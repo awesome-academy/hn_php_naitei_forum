@@ -3,7 +3,7 @@
         <div class="card">
             <div class="card-body">
                 <div class="card-title">
-                    <h2>{{ $question->answers_count . 'Answers' }}</h2>
+                    <h2>{{ $question->answers . __('answer.title') }}</h2>
                 </div>
                 <hr>
                 @include('layouts._message')
@@ -44,8 +44,8 @@
                                             method="POST">
                                             @method('DELETE')
                                             @csrf
-                                            <button type="submit" class="btn btn-sm btn-outline-danger"
-                                                onclick="return confirm('Are you sure')">
+                                            <button type="submit" class="btn btn-sm btn-outline-danger submit_del"
+                                                data-confirm="{{ __('question.confirmSentence') }}">
                                                 {{ __('question.delete') }}
                                             </button>
                                         </form>
