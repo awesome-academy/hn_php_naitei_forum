@@ -41,10 +41,19 @@
                                 @csrf
                                 <input type="hidden" value="-1" name="vote">
                             </form>
-                            <a>
+                            <a title="Click to mark as favorite question (or undo)"
+                                class="favorite mt-2 {{ Auth::guest() ? 'off' : ($question->favorite ? 'favorited' : '') }}"
+                                data-id="{{ $question->id }}"
+                            >
                                 <i class="fas fa-star fa-1x"></i>
-                                <span class="favorites-count">{{ $question->favorites_count }}</span>
+                                <span class="favorites-count">{{ $question->favorites }}</span>
                             </a>
+                            <form id="favorite-question-{{ $question->id }}" action="/questions/{{$question->id}}/favorites" method="POST">
+                                @csrf
+                                @if ($question->favorite)
+                                  @method('DELETE')
+                                @endif
+                            </form>
                         </div>
                         <div class="media-body">
                             {{ $question->content }}

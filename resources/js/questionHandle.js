@@ -35,13 +35,37 @@ $(document).ready(function () {
 
     $('.vote-up').on('click', function (event) {
         event.preventDefault();
-        $questionId = $(this).data('id');
-        document.getElementById('up-vote-question-' + $questionId).submit();
+        questionId = $(this).data('id');
+        document.getElementById('up-vote-question-' + questionId).submit();
     });
 
     $('.vote-down').on('click', function (event) {
         event.preventDefault();
-        $questionId = $(this).data('id');
-        document.getElementById('down-vote-question-' + $questionId).submit();
+        questionId = $(this).data('id');
+        document.getElementById('down-vote-question-' + questionId).submit();
     });
+
+    $('.vote-down-answer').on('click', function (event) {
+        event.preventDefault();
+        answerId = $(this).data('id');
+        document.getElementById('down-vote-answer-' + answerId).submit();
+    });
+
+    $('.vote-up-answer').on('click', function (event) {
+        event.preventDefault();
+        answerId = $(this).data('id');
+        document.getElementById('up-vote-answer-' + answerId).submit();
+    });
+
+    $('.confirm-button').on('click', function (event) {
+        event.preventDefault();
+        answerId = $(this).data('id');
+        document.getElementById('accept-answer-' + answerId).submit();
+    });
+
+    $('.favorite').on('click', function (event) {
+        event.preventDefault();
+        questionId = $(this).data('id');
+        document.getElementById('favorite-question-' + questionId).submit();
+    })
 });

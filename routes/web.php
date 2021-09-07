@@ -35,6 +35,13 @@ Route::post('/answers/{answer}/accept', 'AcceptAnswerController')->name('answers
 Route::get('/questions/{slug}', 'QuestionController@show')->name('questions.show');
 Route::post('/questions/{question_id}/vote', 'VoteQuestionController@voteQuestion')
         ->middleware('auth')->name('vote.question');
+Route::post('/answers/{answer_id}/vote', 'VoteAnswerController@voteAnswer')
+        ->middleware('auth')->name('vote.answer');
+Route::post('/answers/{answer}/accept', 'AcceptAnswerController')->name('answers.accept');
+Route::post('/questions/{question}/favorites', 'FavoritesController@store')
+        ->middleware('auth')->name('questions.favorite');
+Route::delete('/questions/{question}/favorites', 'FavoritesController@destroy')
+        ->middleware('auth')->name('questions.unfavorite');
 
 Route::get('/admin', [AdminController::class, 'index'])->name('home');
 Route::get('/user-management', [AdminController::class, 'managerUser'])->name('user-management');
