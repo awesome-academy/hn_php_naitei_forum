@@ -70,7 +70,7 @@ class Question extends Model
         }
         return "unaswered";
     }
-    
+
     public function acceptBestAnswer(Answer $answer)
     {
         $this->best_answer_id = $answer->id;

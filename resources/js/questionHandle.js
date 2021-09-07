@@ -31,5 +31,17 @@ $(document).ready(function () {
             $('#duplicate-tags').css("display","none");
             $('#submit-form-add').attr("disabled", false);
         }
-    })
+    });
+
+    $('.vote-up').on('click', function (event) {
+        event.preventDefault();
+        $questionId = $(this).data('id');
+        document.getElementById('up-vote-question-' + $questionId).submit();
+    });
+
+    $('.vote-down').on('click', function (event) {
+        event.preventDefault();
+        $questionId = $(this).data('id');
+        document.getElementById('down-vote-question-' + $questionId).submit();
+    });
 });

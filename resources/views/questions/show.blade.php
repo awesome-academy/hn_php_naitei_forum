@@ -16,15 +16,31 @@
                     </div><hr>
                     <div class="media">
                         <div class="d-flex flex-column vote-controls">
-                            <a>
+                            <a title="This question is useful"
+                                class="vote-up {{ Auth::guest() ? 'off' : '' }}"
+                                data-id="{{ $question->id }}"
+                                id="vote-question-{{ $question->id }}"
+                            >
                                 <i class="fas fa-caret-up fa-3x"></i>
                             </a>
+                            <form id="up-vote-question-{{ $question->id }}" action="{{ route('vote.question', $question->id) }}" method="POST">
+                                @csrf
+                                <input type="hidden" value="1" name="vote">
+                            </form>
                             <span class="votes-count">
-                                {{ $question->votes_count }}
+                                {{ $question->up_vote - $question->down_vote }}
                             </span>
-                            <a>
+                            <a title="This question is not useful"
+                                class="vote-down {{ Auth::guest() ? 'off' : '' }}"
+                                data-id="{{ $question->id }}"
+                                id="vote-question-{{ $question->id }}"
+                            >
                                 <i class="fas fa-caret-down fa-3x"></i>
                             </a>
+                            <form id="down-vote-question-{{ $question->id }}" action="{{ route('vote.question', $question->id) }}" method="POST">
+                                @csrf
+                                <input type="hidden" value="-1" name="vote">
+                            </form>
                             <a>
                                 <i class="fas fa-star fa-1x"></i>
                                 <span class="favorites-count">{{ $question->favorites_count }}</span>
