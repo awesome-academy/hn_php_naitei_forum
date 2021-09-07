@@ -3,6 +3,9 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LanguageController;
+use App\Http\Controllers\MyAnswerController;
+use App\Http\Controllers\MyQuestionController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\QuestionController;
@@ -40,3 +43,6 @@ Route::post('/inactive-question/{id}', [AdminController::class, 'inactiveQuestio
 Route::post('/delete-user/{id}', [AdminController::class, 'deleteUser'])->name('delete-user');
 Route::post('/active-user/{id}', [AdminController::class, 'activeUser'])->name('active-user');
 Route::post('/inactive-user/{id}', [AdminController::class, 'inactiveUser'])->name('inactive-user');
+Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
+Route::get('/my-questions', [MyQuestionController::class, 'index'])->name('my-questions');
+Route::get('/my-answers', [MyAnswerController::class, 'index'])->name('my-answers');

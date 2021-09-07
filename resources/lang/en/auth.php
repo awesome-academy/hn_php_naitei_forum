@@ -26,4 +26,8 @@ return [
     'homepage' => 'Home',
     'manager_user' => 'Users Management',
     'manager_QA' => 'Questions Management',
+    'profile' => 'Profile',
+    'view_my_questions' => 'View my questions',
+    'view_my_answers' => 'View my answers',
+    'search' => 'Search',
 ];

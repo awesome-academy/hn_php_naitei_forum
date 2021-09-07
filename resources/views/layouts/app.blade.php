@@ -64,6 +64,15 @@
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
+                                    <a class="dropdown-item" href="{{ route('profile') }}">
+                                        {{ trans('auth.profile') }}
+                                    </a>
+                                    <a class="dropdown-item" href="{{ route('my-questions') }}">
+                                        {{ trans('auth.view_my_questions') }}
+                                    </a>
+                                    <a class="dropdown-item" href="{{ route('my-answers') }}">
+                                        {{ trans('auth.view_my_answers') }}
+                                    </a>
                                 </div>
                             </li>
                         @endguest

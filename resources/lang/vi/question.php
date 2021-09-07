@@ -32,4 +32,6 @@ return [
     'inactive' => 'Chặn',
     'who' => " Bởi ",
     'answered' => "Trả lời ",
+    'title-my-question' => "Câu hỏi của tôi",
+    'title-my-answer' => "Câu trả lời của tôi",
 ];
