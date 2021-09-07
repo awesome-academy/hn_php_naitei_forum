@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
-            <form class="d-flex" action="{{ route('questions.index' ) }}" method="GET">
+            <form class="d-flex" action="{{ route('my-questions') }}" method="GET">
                 <div class="form-group">
                     <input type="text" class="form-control" name="query" placeholder="Enter question title ..." value="{{ request()->input('query') }}">
                     <span class="text-danger">@error('query'){{ $message }} @enderror</span>
@@ -18,10 +18,7 @@
             <div class="card">
                 <div class="card-header">
                     <div class="d-flex align-items-center">
-                        <h2>{{ __('question.title') }}</h2>
-                        <div class="ml-auto">
-                            <a href="{{ route('questions.create')}}" class="btn btn-outline-secondary" id="create-button">{{ __('question.add-question') }}</a>
-                        </div>
+                        <h2>{{ __('question.title-my-question') }}</h2>
                     </div>
                 </div>
                 <div class="card-body">
@@ -61,7 +58,7 @@
                                     </div>
                                 </div>
                                 {{ $q->content }}
-                                <p class="lead">
+                                <p class="lead mt-1">
                                     {{ __('question.asked-by') }} <a href="">{{ $q->user->name }}</a>
                                     <small class="text-muted">{{ $q->created_at }}</small>
                                 </p>

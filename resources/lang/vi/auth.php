@@ -10,4 +10,8 @@ return [
     'homepage' => 'Trang chủ',
     'manager_user' => 'Quản lý người dùng',
     'manager_QA' => 'Quản lý câu hỏi',
+    'profile' => 'Thông tin cá nhân',
+    'view_my_questions' => 'Câu hỏi của tôi',
+    'view_my_answers' => 'Câu trả lời của tôi',
+    'search' => 'Tìm kiếm',
 ];

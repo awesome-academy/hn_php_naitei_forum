@@ -32,4 +32,6 @@ return [
     'inactive' => 'Inactive',
     'who' => " by ",
     'answered' => "Answered ",
+    'title-my-question' => "My Questions",
+    'title-my-answer' => "My Answers",
 ];
