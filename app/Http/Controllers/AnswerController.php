@@ -7,6 +7,7 @@ use App\Models\Answer;
 use App\Models\Question;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 
@@ -41,7 +42,7 @@ class AnswerController extends Controller
     public function store(AnswerRequest $request)
     {
         $request->validated();
-        $userId = Question::find($request->questionId)->user_id;
+        $userId = Auth::id();
 
         $dataInsert = [
             'content' => $request->content,
@@ -92,7 +93,7 @@ class AnswerController extends Controller
      */
     public function update(AnswerRequest $request, Answer $answer)
     {
-        if (Gate::denies('update-question', $answer)) {
+        if (Gate::denies('update-answer', $answer)) {
             abort(403, "Access denied");
         }
         $data = $request->validated();

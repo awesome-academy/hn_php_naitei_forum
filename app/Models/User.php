@@ -61,4 +61,9 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Question::class, 'favorites', 'user_id', 'question_id');
     }
+
+    public function voteQuestions()
+    {
+        return $this->morphedByMany(Question::class, 'voteable');
+    }
 }

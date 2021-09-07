@@ -30,6 +30,8 @@ Route::resource('questions', 'QuestionController')->except('show');
 Route::resource('answers', 'AnswerController');
 Route::post('/answers/{answer}/accept', 'AcceptAnswerController')->name('answers.accept');
 Route::get('/questions/{slug}', 'QuestionController@show')->name('questions.show');
+Route::post('/questions/{question_id}/vote', 'VoteQuestionController@voteQuestion')
+        ->middleware('auth')->name('vote.question');
 
 Route::get('/admin', [AdminController::class, 'index'])->name('home');
 Route::get('/user-management', [AdminController::class, 'managerUser'])->name('user-management');

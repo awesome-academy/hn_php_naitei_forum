@@ -9,12 +9,13 @@ class Vote extends Model
 {
     use HasFactory;
 
-    protected $table = "Commentables";
+    protected $table = "voteables";
     protected $fillable = [
         'up_vote',
         'down_vote',
         'create_at',
         'update_at',
+        'user_id',
     ];
 
     public function voteable()
