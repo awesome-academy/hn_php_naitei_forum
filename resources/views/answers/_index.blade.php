@@ -10,22 +10,44 @@
                 @foreach ($answers as $answer)
                     <div class="media">
                         <div class="d-flex flex-column vote-controls">
-                            <a>
+                            <a title="This answer is useful"
+                                class="vote-up-answer {{ Auth::guest() ? 'off' : '' }}"
+                                data-id="{{ $answer->id }}"
+                            >
                                 <i class="fas fa-caret-up fa-3x"></i>
                             </a>
                             <span class="votes-count">
                             {{ $answer->votes_count }}
                             </span>
-                            <a>
+                            <form id="up-vote-answer-{{ $answer->id }}" action="{{ route('vote.answer', $answer->id) }}" method="POST">
+                                @csrf
+                                <input type="hidden" value="1" name="vote">
+                            </form>
+                            <a title="This answer is not useful"
+                                class="vote-down-answer {{ Auth::guest() ? 'off' : '' }}"
+                                data-id="{{ $answer->id }}"
+                            >
                                 <i class="fas fa-caret-down fa-3x"></i>
                             </a>
+                            <form id="down-vote-answer-{{ $answer->id }}" action="{{ route('vote.answer', $answer->id) }}" method="POST">
+                                @csrf
+                                <input type="hidden" value="-1" name="vote">
+                            </form>
                             @can('accept', $answer)
-                                <a>
+                                <a title="Mark this answer as best answer"
+                                    class="{{ $answer->status }} mt-2 confirm-button"
+                                    data-id="{{ $answer->id }}"
+                                >
                                     <i class="fas fa-check fa-2x"></i>
                                 </a>
+                                <form id="accept-answer-{{ $answer->id }}" action="{{ route('answers.accept', $answer->id)}}" method="POST">
+                                    @csrf
+                                </form>
                             @else
                                 @if ($answer->is_best)
-                                    <a>
+                                    <a title="Accept this answer as best answer"
+                                        class="{{ $answer->status }} mt-2"
+                                    >
                                         <i class="fas fa-check fa-2x"></i>
                                     </a>
                                 @endif

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Question extends Model
 {
@@ -47,7 +48,7 @@ class Question extends Model
 
     public function favoriteUsers()
     {
-        return $this->belongsToMany(User::class);
+        return $this->belongsToMany(User::class, 'favorites');
     }
 
     public function comments()
@@ -75,5 +76,24 @@ class Question extends Model
     {
         $this->best_answer_id = $answer->id;
         $this->save();
+    }
+
+    public function isFavorite()
+    {
+        if (Auth::check()) {
+            return $this->favoriteUsers()->where('user_id', Auth::id())->count() > 0;
+        }
+        
+        return false;
+    }
+
+    public function getFavoriteAttribute()
+    {
+        return $this->isFavorite();
+    }
+
+    public function getFavoritesCountAttribute()
+    {
+        return $this->favoriteUsers()->count();
     }
 }
