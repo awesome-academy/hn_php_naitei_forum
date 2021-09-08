@@ -22,7 +22,7 @@ use App\Http\Controllers\QuestionController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+        return view('welcome');
 });
 
 Auth::routes();
@@ -55,3 +55,4 @@ Route::post('/inactive-user/{id}', [AdminController::class, 'inactiveUser'])->na
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
 Route::get('/my-questions', [MyQuestionController::class, 'index'])->name('my-questions');
 Route::get('/my-answers', [MyAnswerController::class, 'index'])->name('my-answers');
+Route::post('/change-profile', [ProfileController::class, 'changeInformation'])->name('change-profile');
